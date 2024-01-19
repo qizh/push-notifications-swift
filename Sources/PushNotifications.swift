@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 import UserNotifications
 #elseif os(OSX)
@@ -78,7 +78,7 @@ import Foundation
     @objc public func registerForRemoteNotifications() {
         PushNotificationsStatic.registerForRemoteNotifications()
     }
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     /**
      Register to receive remote notifications via Apple Push Notification service.
 

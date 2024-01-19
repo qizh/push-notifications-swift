@@ -1,11 +1,11 @@
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 #endif
 import Foundation
 
 struct EventTypeHandler {
     // We have intentionally duplicated the code of the `getNotificationEventType` method in order to support Xcode 9 and Xcode 10.
-    #if os(iOS) && swift(>=4.2)
+    #if (os(iOS) || os(visionOS)) && swift(>=4.2)
     static func getNotificationEventType(userInfo: [AnyHashable: Any], applicationState: UIApplication.State) -> ReportEventType? {
         var eventType: ReportEventType
         let timestampSecs = UInt(Date().timeIntervalSince1970)
@@ -39,7 +39,7 @@ struct EventTypeHandler {
 
         return eventType
     }
-    #elseif os(iOS) && (swift(>=4.0) && !swift(>=4.2))
+    #elseif (os(iOS) || os(visionOS)) && (swift(>=4.0) && !swift(>=4.2))
     static func getNotificationEventType(userInfo: [AnyHashable: Any], applicationState: UIApplicationState) -> ReportEventType? {
         var eventType: ReportEventType
         let timestampSecs = UInt(Date().timeIntervalSince1970)
@@ -136,7 +136,7 @@ struct EventTypeHandler {
             return .ShouldProcess
         }
 
-        #if os(iOS) && swift(>=4.0)
+        #if (os(iOS) || os(visionOS)) && swift(>=4.0)
         let isForeground = UIApplication.shared.applicationState != .background
         #elseif os(OSX)
         let isForeground = true

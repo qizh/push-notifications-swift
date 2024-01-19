@@ -885,7 +885,7 @@ class ServerSyncProcessHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     func testTrackWillSendEventTypeToTheServer() {
         let url = URL.PushNotifications.devices(instanceId: instanceId)!
         var expRegisterCalled = false

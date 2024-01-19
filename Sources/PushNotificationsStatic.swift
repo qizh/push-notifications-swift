@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 import UserNotifications
 #elseif os(OSX)
@@ -51,7 +51,7 @@ import Foundation
         self.registerForPushNotifications(options: [.alert, .sound, .badge])
     }
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     /**
      Register to receive remote notifications via Apple Push Notification service.
      
@@ -72,7 +72,7 @@ import Foundation
     }
     #endif
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     private static func registerForPushNotifications(options: UNAuthorizationOptions) {
         UNUserNotificationCenter.current().requestAuthorization(options: options) { granted, error in
             if granted {
@@ -283,7 +283,7 @@ import Foundation
             return .ShouldProcess
         }
 
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         let applicationState = UIApplication.shared.applicationState
         guard let eventType = EventTypeHandler.getNotificationEventType(userInfo: userInfo, applicationState: applicationState) else {
             return .ShouldProcess

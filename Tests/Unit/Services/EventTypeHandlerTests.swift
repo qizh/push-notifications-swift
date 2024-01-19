@@ -15,7 +15,7 @@ class EventTypeHandlerTests: XCTestCase {
         super.tearDown()
     }
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     func testEventTypeActive() {
         let userInfo = ["aps": ["content-available": 1], "data": ["pusher": ["instanceId": "1b880590-6301-4bb5-b34f-45db1c5f5644", "publishId": "pubid-33f3f68e-b0c5-438f-b50f-fae93f6c48df"]]]
         let eventType = EventTypeHandler.getNotificationEventType(userInfo: userInfo, applicationState: .active) as! DeliveryEventType
